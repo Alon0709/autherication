@@ -21,11 +21,11 @@ services:
     depends_on:
       - mongoDB
 
-  react-site:
-    container_name: groupPeopleSite
-    build: ./final-react-project
-    ports:
-      - "80:3000"
+  # react-site:
+  #   container_name: groupPeopleSite
+  #   build: ./final-react-project
+  #   ports:
+  #     - "80:3000"
 
   mongoDB:
     container_name: mongoDB
