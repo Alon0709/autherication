@@ -11,5 +11,6 @@ const Config = {
     personGetAllRoute: 'http://localhost:1234/person/?id=*',
     personDeleteRoute: 'http://localhost:1234/person',
     personPutNameRoute: 'http://localhost:1234/person/name',
+    cookiesInUse: ['sessionUser', 'sessionPassword'],
 };
 export default Config;
