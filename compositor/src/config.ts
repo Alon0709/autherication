@@ -1,8 +1,10 @@
+import 'dotenv/config'
+
 export default {
-    port: 3000,
+    port: Number(process.env.INNER_PORT) || 1234,
 
     groupService: {
-        route: 'http://group-service:3000',
+        route: `http://${process.env.GROUP_IP || 'localhost'}:${process.env.INNER_PORT || 4321}`,
         createNewGroup: '/',
         getGroup: '/get-by-id',
         deleteGroup: '/',
@@ -16,7 +18,7 @@ export default {
         updateAllGroups: '/update-all-groups-delete-person'
     },
     personService: {
-        route: 'http://person-service:3000',
+        route: `http://${process.env.PERSON_IP || 'localhost'}:${process.env.INNER_PORT || 2314}`,
         createNewPerson: '/',
         getPerson: '/',
         deletePerson: '/',

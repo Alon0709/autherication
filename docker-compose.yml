@@ -8,24 +8,35 @@ services:
     depends_on:
       - group-service
       - person-service
+    environment:
+      - INNER_PORT=3000
+      - PERSON_IP=person-service
+      - GROUP_IP=group-service
 
   group-service:
     container_name: group-service
     build: ./groupService
     depends_on:
       - mongoDB 
+    environment:
+      - INNER_PORT=3000
+      - MONGO_PATH=mongoDB
+
 
   person-service:
     container_name: person-service
     build: ./personService
     depends_on:
       - mongoDB
+    environment:
+      - INNER_PORT=3000
+      - MONGO_PATH=mongoDB
 
-  # react-site:
-  #   container_name: groupPeopleSite
-  #   build: ./final-react-project
-  #   ports:
-  #     - "80:3000"
+  react-site:
+    container_name: groupPeopleSite
+    build: ./final-react-project
+    ports:
+      - "80:3000"
 
   mongoDB:
     container_name: mongoDB

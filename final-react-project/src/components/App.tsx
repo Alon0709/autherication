@@ -13,16 +13,16 @@ import Config from '../config';
 //https://www.youtube.com/watch?v=2so3hh8n-3w
 
 const App: FC = () => {
-    const [cookies, setCookie, removeCookie] = useCookies(Config.cookiesInUse);
-    const logout = () => {
-        Cookies.remove(Config.cookieName);
-    };
+    // const [cookies, setCookie, removeCookie] = useCookies(Config.cookiesInUse);
+    // const logout = () => {
+    //     Cookies.remove(Config.cookieName);
+    // };
 
-    const login = ()
+    // const login = ()
 
     return <div className='App'>
-        {() => Cookies.set('xd', 'your mom')}
-        <Button onClick={() => console.log(Cookies.get(Config.cookieName))}><p>xd</p></Button>
+        {/* {() => Cookies.set('xd', 'your mom')} */}
+        {/* <Button onClick={() => console.log(Cookies.get(Config.cookieName))}><p>xd</p></Button> */}
         <Routes>
             <Route path='/' element={<HomePage />}/>
             <Route path='/peoplepage' element={<PeoplePage />}/>
