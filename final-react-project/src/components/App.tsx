@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { CookiesProvider, useCookies } from 'react-cookie';
-import { Button } from '@mui/material';
+import { AppBar, Button, Container } from '@mui/material';
 import PeoplePage from './PeoplePage';
 import GroupsPage from './GroupsPage';
 import HomePage from './homePage';
@@ -23,6 +23,11 @@ const App: FC = () => {
     return <div className='App'>
         {/* {() => Cookies.set('xd', 'your mom')} */}
         {/* <Button onClick={() => console.log(Cookies.get(Config.cookieName))}><p>xd</p></Button> */}
+        <AppBar position="static">
+            <Container maxWidth='xl'>
+                <h1>xd</h1>
+            </Container>
+        </AppBar>
         <Routes>
             <Route path='/' element={<HomePage />}/>
             <Route path='/peoplepage' element={<PeoplePage />}/>

@@ -12,6 +12,7 @@ services:
       - INNER_PORT=3000
       - PERSON_IP=person-service
       - GROUP_IP=group-service
+      - USER_IP=user-service
 
   group-service:
     container_name: group-service
@@ -22,6 +23,14 @@ services:
       - INNER_PORT=3000
       - MONGO_PATH=mongoDB
 
+  user-service:
+    container_name: user-service
+    build: ./UsersService
+    depends_on:
+      - mongoDB
+    environment:
+      - INNER_PORT=3000
+      - MONGO_PATH=mongoDB
 
   person-service:
     container_name: person-service

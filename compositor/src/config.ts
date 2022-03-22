@@ -2,7 +2,7 @@ import 'dotenv/config'
 
 export default {
     port: Number(process.env.INNER_PORT) || 1234,
-
+    secretKey : 'xd1234',
     groupService: {
         route: `http://${process.env.GROUP_IP || 'localhost'}:${process.env.INNER_PORT || 4321}`,
         createNewGroup: '/',
@@ -30,4 +30,9 @@ export default {
         updateRemoverGroup: '/remove-group-from-person',
         isPersonExist: '/is-person-exist',
     },
+    userService: {
+        route: `http://${process.env.USER_IP || 'localhost'}:${process.env.INNER_PORT || 3005}`,
+        login: '/login',
+        logout: '/logout',
+    }
 }
