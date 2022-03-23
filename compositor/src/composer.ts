@@ -3,8 +3,10 @@ import cors from 'cors';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
-import passportlocal from "passport-local";
+// import { Strategy } from 'passport-shraga';
+const { Strategy } = require("passport-shraga");
 
+import './Auth/passportShraga';
 import config from './config';
 import Router from './Router';
 import errorMiddleWare from './Utilities/ErrorMiddleWare';
@@ -13,7 +15,6 @@ import {serilize, deserilize, localStrategy} from './Auth/passportShraga';
 export default class Compositor {
     app: Express;
     port: number;
-    LocalStrategy = passportlocal.Strategy;
 
     constructor(port: number) {
         this.app = express();
@@ -23,13 +24,17 @@ export default class Compositor {
             secret: config.secretKey,
             resave: true,
             saveUninitialized: true,
+            // store: sessionStore,
+            cookie: {
+                maxAge: 1000 * 60 * 60 * 24
+            }
         }));
         this.app.use(cookieParser(config.secretKey));
         this.app.use(passport.initialize());
         this.app.use(passport.session());
-        passport.use(new this.LocalStrategy(localStrategy))
         passport.serializeUser(serilize);
         passport.deserializeUser(deserilize);
+        passport.use(new Strategy({shragaURL: 'https://shraga-test-ui.shraga.branch-yesodot.org/'}, localStrategy))
 
         this.app.use('/', Router);
         this.app.use(errorMiddleWare);
