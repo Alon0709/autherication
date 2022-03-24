@@ -1,9 +1,14 @@
 // import { Strategy } from "passport-shraga";
 
-export function localStrategy(profile: any, done: Function) { 
-    console.log(`My Profile Is: ${profile}`);
-    done(null, profile);
-}
+const users: any[] = [];
+
+export function localStrategy(profile: any, done: Function) {
+    console.log(profile.id);
+        let length = users.filter(user => user.id === profile.id).length;
+        if (length === 0)
+            users.push(profile);
+        done(null, profile);
+    }
 
 export function serilize(user : any, cb: Function) {
     console.log('2');
@@ -11,7 +16,6 @@ export function serilize(user : any, cb: Function) {
 }
 
 export function deserilize(id: string, cb: Function) {
-    console.log('3');
-    cb(null, {username: 'xd', gomo: 'boyass'})
+    const user = users.filter(user => user.id === id).length > 0 ? users.filter(user => user.id === id)[0] : {};
+    cb(null, user);
 }
-

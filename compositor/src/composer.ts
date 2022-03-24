@@ -24,7 +24,6 @@ export default class Compositor {
             secret: config.secretKey,
             resave: true,
             saveUninitialized: true,
-            // store: sessionStore,
             cookie: {
                 maxAge: 1000 * 60 * 60 * 24
             }
@@ -34,7 +33,7 @@ export default class Compositor {
         this.app.use(passport.session());
         passport.serializeUser(serilize);
         passport.deserializeUser(deserilize);
-        passport.use(new Strategy({shragaURL: 'https://shraga-test-ui.shraga.branch-yesodot.org/'}, localStrategy))
+        passport.use(new Strategy({shragaURL: 'https://shraga.shraga.branch-yesodot.org', callbackURL: 'http://localhost:1234/callback'}, localStrategy))
 
         this.app.use('/', Router);
         this.app.use(errorMiddleWare);
