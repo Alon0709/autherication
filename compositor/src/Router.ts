@@ -10,8 +10,9 @@ Router.use('/person', personRouter);
 Router.use('/user', userRouter)
 Router.post('/callback', passport.authenticate("shraga"), function (req, res, next) {
     console.log(req.query.callbackUrl);
+    console.log(req.user);
     // console.log(res);
-    res.redirect('/');
+    res.send('xd');
 });
 
 export default Router;

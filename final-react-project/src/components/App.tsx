@@ -1,7 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { CookiesProvider, useCookies } from 'react-cookie';
 import { AppBar, Button, Container } from '@mui/material';
+import axios from 'axios';
 import PeoplePage from './PeoplePage';
 import GroupsPage from './GroupsPage';
 import HomePage from './homePage';
@@ -13,12 +14,9 @@ import Config from '../config';
 //https://www.youtube.com/watch?v=2so3hh8n-3w
 
 const App: FC = () => {
-    // const [cookies, setCookie, removeCookie] = useCookies(Config.cookiesInUse);
-    // const logout = () => {
-    //     Cookies.remove(Config.cookieName);
-    // };
-
-    // const login = ()
+    const login = () => {
+        axios.get('http://localhost:1234/user/login');
+    };
 
     return <div className='App'>
         {/* {() => Cookies.set('xd', 'your mom')} */}
@@ -27,6 +25,7 @@ const App: FC = () => {
             <Container maxWidth='xl'>
                 <h1>xd</h1>
             </Container>
+            <Button onClick={login} color='secondary'>maybe not?</Button>
         </AppBar>
         <Routes>
             <Route path='/' element={<HomePage />}/>
