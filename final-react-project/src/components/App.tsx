@@ -15,8 +15,14 @@ import Config from '../config';
 
 const App: FC = () => {
     const login = () => {
-        axios.get('http://localhost:1234/user/login');
+        window.location = 'http://localhost:1234/user/login' as any;
     };
+
+    const test = () => {
+        axios.get('http://localhost:1234/test', { withCredentials: true}).then((res) => {
+            console.log(res.data);
+        })
+    }
 
     return <div className='App'>
         {/* {() => Cookies.set('xd', 'your mom')} */}
@@ -24,6 +30,7 @@ const App: FC = () => {
         <AppBar position="static">
             <Container maxWidth='xl'>
                 <h1>xd</h1>
+                <Button onClick={test}>test</Button>
             </Container>
             <Button onClick={login} color='secondary'>maybe not?</Button>
         </AppBar>

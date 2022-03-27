@@ -8,11 +8,11 @@ const Router : express.Router = express.Router();
 Router.use('/group', groupRouter);
 Router.use('/person', personRouter);
 Router.use('/user', userRouter)
-Router.post('/callback', passport.authenticate("shraga"), function (req, res, next) {
-    console.log(req.query.callbackUrl);
+Router.get('/test', (req, res) => {
+    console.log(req.cookies);
+    console.log('test');
     console.log(req.user);
-    // console.log(res);
-    res.send('xd');
+    res.send(req.user)
 });
 
 export default Router;
