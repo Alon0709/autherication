@@ -3,6 +3,8 @@ import 'dotenv/config'
 export default {
     port: Number(process.env.INNER_PORT) || 1234,
     secretKey : 'xd1234',
+    corsApprovedList: [`http://localhost:${process.env.INNER_PORT}`],
+    shragaUrl: process.env.SHRAGA_URL || 'https://shraga.shraga.branch-yesodot.org',
     groupService: {
         route: `http://${process.env.GROUP_IP || 'localhost'}:${process.env.INNER_PORT || 4321}`,
         createNewGroup: '/',
@@ -32,7 +34,6 @@ export default {
     },
     userService: {
         route: `http://${process.env.USER_IP || 'localhost'}:${process.env.INNER_PORT || 3005}`,
-        login: '/login',
-        logout: '/logout',
+        newUserCheck: '/',
     }
 }

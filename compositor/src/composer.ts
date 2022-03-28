@@ -19,7 +19,7 @@ export default class Compositor {
         this.app = express();
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: false }));
-        this.app.use(cors({ origin: ['http://localhost:3000','http://localhost:1234'], credentials: true}));
+        this.app.use(cors({ origin: config.corsApprovedList, credentials: true}));
         this.app.use(cookieParser());
         this.app.use(session({
             secret: config.secretKey,

@@ -12,7 +12,6 @@ export default class server {
         this.app = express();
         this.app.use(express.urlencoded({ extended: true }));
         this.app.use(express.json());
-        this.app.use(cors({ origin: '*' }));
         this.app.use('/', groupRouter);
         this.app.use(errorMiddleWare);
         this.port = port;

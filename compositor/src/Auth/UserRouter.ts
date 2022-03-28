@@ -8,7 +8,7 @@ import UserController from "./UserController";
 
 const userRouter: express.Router = express.Router();
 
-userRouter.get(config.userService.login, passport.authenticate("shraga", UserControllet.login));
+userRouter.get(config.userService.newUserCheck, passport.authenticate("shraga", UserControllet.login));
 
 userRouter.post('/callback', passport.authenticate("shraga"), function (req, res, next) {
     res.redirect('http://localhost:3000/');

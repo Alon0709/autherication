@@ -9,6 +9,7 @@ services:
       - group-service
       - person-service
     environment:
+      - SHRAGA_URL=https://shraga.shraga.branch-yesodot.org
       - INNER_PORT=3000
       - PERSON_IP=person-service
       - GROUP_IP=group-service

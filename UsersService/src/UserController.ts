@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
-import GroupManager from './UserManager';
+import UserManager from './UserManager';
 
 export default class UserController {
+    static userLoginCheck(request: Request, response: Response) {
 
+    }
 }

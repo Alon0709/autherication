@@ -19,10 +19,10 @@ const App: FC = () => {
     };
 
     const test = () => {
-        axios.get('http://localhost:1234/test', { withCredentials: true}).then((res) => {
+        axios.get('http://localhost:1234/test', { withCredentials: true }).then((res) => {
             console.log(res.data);
-        })
-    }
+        });
+    };
 
     return <div className='App'>
         {/* {() => Cookies.set('xd', 'your mom')} */}
