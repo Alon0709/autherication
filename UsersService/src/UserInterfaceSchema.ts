@@ -9,7 +9,7 @@ export interface userInterface {
     photo: string;
     phoneNumbers: string[];
 }
-export const groupSchema = new Schema<userInterface>({
+export const userSchema = new Schema<userInterface>({
     _id: { type: String, required: true },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },

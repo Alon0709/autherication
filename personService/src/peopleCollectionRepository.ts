@@ -1,4 +1,4 @@
-import moongose from 'mongoose';
+import mongoose from 'mongoose';
 import Config from './Config';
 import { personSchema, personInterface } from './PersonSchemaInterface';
 import halfPopulated from './populateInterface';
@@ -25,7 +25,7 @@ export default class peopleCollectionRepository {
             }
     }
 
-    static PersonModel = moongose.model(Config.peopleCollection, personSchema);
+    static PersonModel = mongoose.model(Config.peopleCollection, personSchema);
 
     static createNewPerson(personToAdd: personInterface) {
         return this.PersonModel.create(personToAdd);

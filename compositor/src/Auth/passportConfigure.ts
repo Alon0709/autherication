@@ -6,8 +6,6 @@ import config from "../config";
 import { KartoffelUser, User } from "./userInterface";
 const { Strategy } = require("passport-shraga");
 
-const users: User[] = [];
-
 const transformFunction = (user:KartoffelUser) => {
     const saveUser:User = {} as User;
     saveUser._id = user.genesisId;
@@ -25,14 +23,20 @@ passport.serializeUser((user: any, cb: Function) => {
 });
 
 passport.deserializeUser((id: String, cb: Function) => {
-    const user = users.filter(user => user._id === id).length > 0 ? users.filter(user => user._id === id)[0] : {};
-    cb(null, user);
+    console.log(id);
+    axios.get(`${config.userService.route}${config.userService.getUserById}`, {params:{id:id}}).then((res) => {
+        console.log(res.data);
+        cb(null, res.data)
+    }).catch((err) => {
+        console.log(err);
+        
+        cb(err)
+    });
 });
-
 const configurePassport = () => {
-    passport.use(new Strategy({shragaURL: config.shragaUrl, callbackURL: `http://localhost:${config.port}/user/callback`}, (profile: KartoffelUser, done: Function) => {
+    passport.use(new Strategy({shragaURL: config.shragaUrl, callbackURL: config.callbackURL}, (profile: KartoffelUser, done: Function) => {
         const transUser = transformFunction(profile);
-        axios.get(`${config.userService.route}${config.userService.newUserCheck}`, {data: transUser}).then((res) => {
+        axios.post(`${config.userService.route}${config.userService.newUserCheck}`, {data: transUser}).then((res) => {
             done(null, transUser)
         }).catch((err) => {
             done(err)

@@ -1,8 +1,11 @@
 import React, { FC, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { CookiesProvider, useCookies } from 'react-cookie';
-import { AppBar, Button, Container } from '@mui/material';
+import { AppBar, Button, Container, IconButton, Toolbar, Typography } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import Menu from '@mui/material/Menu';
 import axios from 'axios';
+
 import PeoplePage from './PeoplePage';
 import GroupsPage from './GroupsPage';
 import HomePage from './homePage';
@@ -15,7 +18,7 @@ import Config from '../config';
 
 const App: FC = () => {
     const login = () => {
-        window.location = 'http://localhost:1234/user/login' as any;
+        window.location = 'http://localhost:1234/user/' as any;
     };
 
     const test = () => {
@@ -25,14 +28,15 @@ const App: FC = () => {
     };
 
     return <div className='App'>
-        {/* {() => Cookies.set('xd', 'your mom')} */}
-        {/* <Button onClick={() => console.log(Cookies.get(Config.cookieName))}><p>xd</p></Button> */}
         <AppBar position="static">
-            <Container maxWidth='xl'>
-                <h1>xd</h1>
-                <Button onClick={test}>test</Button>
-            </Container>
-            <Button onClick={login} color='secondary'>maybe not?</Button>
+            <Toolbar variant="dense">
+                <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+                    <MenuIcon />
+                </IconButton>
+                <Typography variant="h6" color="inherit" component="div">
+                Photos
+                </Typography>
+            </Toolbar>
         </AppBar>
         <Routes>
             <Route path='/' element={<HomePage />}/>

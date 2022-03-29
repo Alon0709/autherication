@@ -1,6 +1,6 @@
 import express, {Express} from "express";
 import cors from 'cors';
-import groupRouter from "./UserRouter";
+import usersRouter from "./UserRouter";
 import Config from './Config';
 import errorMiddleWare from "./Utilities/ErrorMiddleWare";
 
@@ -12,7 +12,7 @@ export default class server {
         this.app = express();
         this.app.use(express.urlencoded({ extended: true }));
         this.app.use(express.json());
-        this.app.use('/', groupRouter);
+        this.app.use('/', usersRouter);
         this.app.use(errorMiddleWare);
         this.port = port;
     }
