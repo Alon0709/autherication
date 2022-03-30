@@ -23,6 +23,8 @@ const MenuAppBar: FC = () => {
         setAnchorEl(null);
     };
 
+    const pages = []
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
@@ -36,12 +38,12 @@ const MenuAppBar: FC = () => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography
-                        variant="h6"
-                        component="div"
-                        sx={{ flexGrow: 1 }}
-                    >
-                        Photos
+
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        People
+                    </Typography>
+                    <Typography variant="h6" component="div">
+                        Groups
                     </Typography>
                     {auth && (
                         <div>

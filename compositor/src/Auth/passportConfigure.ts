@@ -23,14 +23,10 @@ passport.serializeUser((user: any, cb: Function) => {
 });
 
 passport.deserializeUser((id: String, cb: Function) => {
-    console.log(id);
     axios.get(`${config.userService.route}${config.userService.getUserById}`, {params:{id:id}}).then((res) => {
-        console.log(res.data);
         cb(null, res.data)
     }).catch((err) => {
-        console.log(err);
-        
-        cb(err)
+        cb(err);
     });
 });
 const configurePassport = () => {

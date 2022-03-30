@@ -11,6 +11,10 @@ const Config = {
     personGetAllRoute: 'http://localhost:1234/person/?id=*',
     personDeleteRoute: 'http://localhost:1234/person',
     personPutNameRoute: 'http://localhost:1234/person/name',
+    logginRoute: 'http://localhost:1234/user/',
+    cookieUserName: 'SignInSecret',
+    secretSDI: 'connect.sid',
+    getUserObject: 'http://localhost:1234/user/get-user',
     cookiesInUse: ['sessionUser', 'sessionPassword'],
 };
 export default Config;

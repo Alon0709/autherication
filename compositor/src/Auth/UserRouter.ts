@@ -13,5 +13,7 @@ userRouter.post('/callback', passport.authenticate("shraga"), function (req, res
     res.redirect('http://localhost:3000/');
 });
 
+userRouter.get(config.getUserObject, UserController.getUserBack);
+
 // personRouter.get(config.userService.logout, asyncWrapper(PersonController.deletePerson));
 export default userRouter;

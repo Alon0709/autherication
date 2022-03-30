@@ -6,6 +6,7 @@ export default {
     corsApprovedList: [`http://localhost:${process.env.INNER_PORT || 1234}`, 'http://localhost:3000'],
     shragaUrl: process.env.SHRAGA_URL || 'https://shraga.shraga.branch-yesodot.org',
     callbackURL: `http://localhost:${process.env.INNER_PORT || 1234}/user/callback`,
+    getUserObject: '/get-user',
     groupService: {
         route: `http://${process.env.GROUP_IP || 'localhost'}:${process.env.INNER_PORT || 4321}`,
         createNewGroup: '/',
