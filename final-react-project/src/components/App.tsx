@@ -10,10 +10,11 @@ import HomePage from './homePage';
 import FourOFourPage from './404page';
 import Config from '../config';
 import MenuAppBar from './NavBar';
-import { loggedUserState } from '../Atoms';
+import loggedUserState from '../Atoms';
+import userType from '../userInterface';
 
 const App: FC = () => {
-    const [loggedUser, setUser] = useRecoilState(loggedUserState);
+    const [, setUser] = useRecoilState<userType>(loggedUserState);
 
     const login = () => {
         window.location = Config.logginRoute as any;

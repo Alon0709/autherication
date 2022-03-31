@@ -1,6 +1,7 @@
 import { atom } from 'recoil';
+import userType from './userInterface';
 
-export const loggedUserState = atom({
-    key: "userLoggedState",
-    default: undefined
+export default atom({
+    key: 'userLoggedState',
+    default: {} as userType,
 });
