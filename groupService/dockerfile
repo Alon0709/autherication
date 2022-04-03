@@ -1,13 +1,15 @@
-FROM node:16-alpine
-
+FROM node:16-alpine AS build
 WORKDIR /app
+COPY package*.json ./
+RUN npm install --production -f
+COPY ./ ./
+RUN npm run build
 
-COPY package.json ./
-
-RUN npm install
-
-COPY ./out ./
-
-EXPOSE 4321
+FROM build AS prod
+WORKDIR /app
+COPY package*.json ./
+RUN npm install --production -f
+COPY --from=build ./app/dist ./
+EXPOSE 2314
 
 CMD ["npm", "start"]

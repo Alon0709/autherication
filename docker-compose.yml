@@ -8,39 +8,31 @@ services:
     depends_on:
       - group-service
       - person-service
-    environment:
-      - SHRAGA_URL=https://shraga.shraga.branch-yesodot.org
-      - INNER_PORT=3000
-      - PERSON_IP=person-service
-      - GROUP_IP=group-service
-      - USER_IP=user-service
+    env_file:
+      - ./enviroments/compositor.env
 
   group-service:
     container_name: group-service
     build: ./groupService
     depends_on:
-      - mongoDB 
-    environment:
-      - INNER_PORT=3000
-      - MONGO_PATH=mongoDB
+      - mongoDB
+    env_file:
+      - ./enviroments/services.env
 
   user-service:
     container_name: user-service
     build: ./UsersService
     depends_on:
       - mongoDB
-    environment:
-      - INNER_PORT=3000
-      - MONGO_PATH=mongoDB
-
+    env_file:
+      - ./enviroments/services.env
   person-service:
     container_name: person-service
     build: ./personService
     depends_on:
       - mongoDB
-    environment:
-      - INNER_PORT=3000
-      - MONGO_PATH=mongoDB
+    env_file:
+      - ./enviroments/services.env
 
   react-site:
     container_name: groupPeopleSite
