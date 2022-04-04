@@ -7,6 +7,7 @@ export default {
     shragaUrl: process.env.SHRAGA_URL || 'https://shraga.shraga.branch-yesodot.org',
     callbackURL: `http://localhost:${process.env.INNER_PORT || 1234}/user/callback`,
     getUserObject: '/get-user',
+    reactSiteUrl: `http://${process.env.SITE_IP || 'localhost'}:${process.env.SITE_PORT || 3000}`,
     groupService: {
         route: `http://${process.env.GROUP_IP || 'localhost'}:${process.env.INNER_PORT || 4321}`,
         createNewGroup: '/',

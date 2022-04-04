@@ -4,13 +4,12 @@ services:
     container_name: compositor
     build: ./compositor
     ports:
-      - "1234:3000"
+      - '3000:3000'
     depends_on:
       - group-service
       - person-service
     env_file:
       - ./enviroments/compositor.env
-
   group-service:
     container_name: group-service
     build: ./groupService
@@ -18,7 +17,6 @@ services:
       - mongoDB
     env_file:
       - ./enviroments/services.env
-
   user-service:
     container_name: user-service
     build: ./UsersService
@@ -33,16 +31,14 @@ services:
       - mongoDB
     env_file:
       - ./enviroments/services.env
-
   react-site:
     container_name: groupPeopleSite
     build: ./final-react-project
     ports:
-      - "80:3000"
-
+      - '80:3000'
   mongoDB:
     container_name: mongoDB
-    image: mongo:latest
+    image: 'mongo:latest'
     ports:
-      - "27017:27017"
+      - '27017:27017'
     restart: always
