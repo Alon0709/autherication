@@ -34,8 +34,10 @@ services:
   react-site:
     container_name: groupPeopleSite
     build: ./final-react-project
+    env_file:
+      - ./enviroments/clientSite.env
     ports:
-      - '80:3000'
+      - '80:80'
   mongoDB:
     container_name: mongoDB
     image: 'mongo:latest'

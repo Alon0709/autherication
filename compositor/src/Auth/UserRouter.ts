@@ -14,7 +14,7 @@ userRouter.post('/callback', passport.authenticate("shraga"), function (req, res
     res.redirect(config.reactSiteUrl);
 });
 
-userRouter.get(config.getUserObject, UserController.getUserBack);
+userRouter.get(config.getUserObject, passport.authenticate("shraga"), UserController.getUserBack);
 
 // personRouter.get(config.userService.logout, asyncWrapper(PersonController.deletePerson));
 export default userRouter;

@@ -36,7 +36,7 @@ const PeoplePage: FC = () => {
         <IconButton onClick={() => setDialog(true)}><PlushIcon color="success"/></IconButton>
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                {peopleList.map((person) => <Grid item xs={2} sm={4} md={4} key={person._id}><PersonCard person={person} handlePersonChange={getPeopleFromDataBase} /></Grid>)};
+                {peopleList.map((person) => <Grid item xs={2} sm={4} md={4} key={person._id}><PersonCard person={person} handlePersonChange={getPeopleFromDataBase} /></Grid>)}
             </Grid>
         </Box>
     </div>;

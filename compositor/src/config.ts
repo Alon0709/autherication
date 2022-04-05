@@ -3,7 +3,7 @@ import 'dotenv/config'
 export default {
     port: Number(process.env.INNER_PORT) || 1234,
     secretKey : 'xd1234',
-    corsApprovedList: [`http://localhost:${process.env.INNER_PORT || 1234}`, 'http://localhost:3000'],
+    corsApprovedList: ['http://localhost'],
     shragaUrl: process.env.SHRAGA_URL || 'https://shraga.shraga.branch-yesodot.org',
     callbackURL: `http://localhost:${process.env.INNER_PORT || 1234}/user/callback`,
     getUserObject: '/get-user',

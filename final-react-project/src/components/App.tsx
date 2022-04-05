@@ -23,6 +23,7 @@ const App: FC = () => {
     useEffect(() => {
         if (!Cookies.get(Config.cookieUserName)) login();
         axios.get(Config.getUserObject, { withCredentials: true }).then((res) => {
+            console.log(res.data);
             setUser(res.data);
         }).catch((err) => console.log(err));
     }, []);
