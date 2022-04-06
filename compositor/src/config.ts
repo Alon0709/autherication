@@ -35,7 +35,7 @@ export default {
         updateRemoverGroup: '/remove-group-from-person',
         isPersonExist: '/is-person-exist',
     },
-    userService: {
+    authService: {
         route: `http://${process.env.USER_IP || 'localhost'}:${process.env.INNER_PORT || 3005}`,
         newUserCheck: '/',
         getUserById: '/',

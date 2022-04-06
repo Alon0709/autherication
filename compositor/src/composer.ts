@@ -3,9 +3,8 @@ import cors from 'cors';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
-// import { Strategy } from 'passport-shraga';
 
-import passportConfig from './Auth/passportConfigure';
+import passportConfig from './Auth/PassportConfigure';
 import config from './config';
 import Router from './Router';
 import errorMiddleWare from './Utilities/ErrorMiddleWare';
@@ -15,7 +14,7 @@ export default class Compositor {
     port: number;
 
     constructor(port: number) {
-        passportConfig();
+        passportConfig.configurePassport();
         this.app = express();
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: false }));

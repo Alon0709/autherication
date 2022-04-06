@@ -12,7 +12,7 @@ const Config = {
     personGetAllRoute: `http://localhost:${compPort}/person/?id=*`,
     personDeleteRoute: `http://localhost:${compPort}/person`,
     personPutNameRoute: `http://localhost:${compPort}/person/name`,
-    logginRoute: `http://localhost:${compPort}/user/`,
+    logginRoute: `http://localhost:${compPort}/auth/`,
     cookieUserName: 'SignInSecret',
     secretSDI: 'connect.sid',
     getUserObject: `http://localhost:${compPort}/user/get-user`,

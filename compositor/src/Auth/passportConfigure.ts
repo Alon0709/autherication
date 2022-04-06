@@ -6,38 +6,43 @@ import config from "../config";
 import { KartoffelUser, User } from "./userInterface";
 const { Strategy } = require("passport-shraga");
 
-const transformFunction = (user:KartoffelUser) => {
-    const saveUser:User = {} as User;
-    saveUser._id = user.genesisId;
-    saveUser.firstName = user.name.firstName;
-    saveUser.lastName = user.name.lastName;
-    saveUser.email = user.email;
-    saveUser.clearance = Number(user.clearance);
-    saveUser.photo = user.photo;
-    saveUser.phoneNumbers = user.phoneNumbers;
-    return saveUser;
-};
-
-passport.serializeUser((user: any, cb: Function) => {
-    cb(null, user._id);
-});
-
-passport.deserializeUser((id: String, cb: Function) => {
-    axios.get(`${config.userService.route}${config.userService.getUserById}`, {params:{id:id}}).then((res) => {
-        cb(null, res.data)
-    }).catch((err) => {
-        cb(err);
-    });
-});
-const configurePassport = () => {
-    passport.use(new Strategy({shragaURL: config.shragaUrl, callbackURL: config.callbackURL}, (profile: KartoffelUser, done: Function) => {
-        const transUser = transformFunction(profile);
-        axios.post(`${config.userService.route}${config.userService.newUserCheck}`, {data: transUser}).then((res) => {
-            done(null, transUser)
-        }).catch((err) => {
-            done(err)
+export default class ShragaConfig {
+    static configurePassport() {
+        passport.serializeUser((user: any, cb: Function) => {
+            cb(null, user._id);
         });
-    }));
-}
 
-export default configurePassport;
+        passport.deserializeUser((id: String, cb: Function) => {
+            axios.get(`${config.authService.route}${config.authService.getUserById}`, {params:{id:id}}).then((res) => {
+                cb(null, res.data)
+            }).catch((err) => {
+                cb(err);
+            });
+        });
+
+        passport.use(new Strategy({shragaURL: config.shragaUrl, callbackURL: config.callbackURL}, async (profile: KartoffelUser, done: Function) => {
+            const transUser = this.transformFunction(profile);
+            await axios.post(`${config.authService.route}${config.authService.newUserCheck}`, {data: transUser}).then((res) => {
+                done(null, transUser)
+            }).catch((err) => {
+                done(err)
+            });
+        }));
+    }
+
+    static transformFunction = (user:KartoffelUser) => {
+        const saveUser:User = {} as User;
+        saveUser._id = user.genesisId;
+        saveUser.firstName = user.name.firstName;
+        saveUser.lastName = user.name.lastName;
+        saveUser.email = user.email;
+        saveUser.clearance = Number(user.clearance);
+        saveUser.photo = user.photo;
+        saveUser.phoneNumbers = user.phoneNumbers;
+        return saveUser;
+    };
+
+    static shragaMiddleWare() {
+        return passport.authenticate("shraga");
+    }
+}
